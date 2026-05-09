@@ -1,0 +1,184 @@
+.meetings-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.meetings-container h2 {
+  font-size: 28px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+.meeting-form {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.form-group textarea {
+  resize: vertical;
+  grid-column: 1 / -1;
+}
+
+.meeting-form button {
+  grid-column: 1 / -1;
+  padding: 12px;
+  background-color: #27ae60;
+  color: white;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.meeting-form button:hover {
+  background-color: #229954;
+}
+
+.meetings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.empty {
+  text-align: center;
+  color: #999;
+  padding: 40px;
+  background: white;
+  border-radius: 8px;
+}
+
+.meeting-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.meeting-date-box {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 70px;
+  flex-shrink: 0;
+}
+
+.date-day {
+  display: block;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.date-month {
+  display: block;
+  font-size: 12px;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.meeting-details {
+  flex: 1;
+  position: relative;
+}
+
+.meeting-details h3 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.location {
+  margin: 6px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.notes {
+  margin: 8px 0;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.countdown {
+  margin: 10px 0 0 0;
+  font-size: 13px;
+  color: #999;
+  font-style: italic;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: #e74c3c;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.delete-btn:hover {
+  color: #c0392b;
+}
+
+@media (max-width: 600px) {
+  .meeting-card {
+    flex-direction: column;
+  }
+
+  .meeting-date-box {
+    width: 100%;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    min-width: auto;
+  }
+
+  .date-day {
+    font-size: 24px;
+  }
+}

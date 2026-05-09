@@ -49,6 +49,17 @@ CREATE TABLE IF NOT EXISTS newsfeed (
   created_at TIMESTAMP DEFAULT NOW()
 );
 
+-- Create meetings table
+CREATE TABLE IF NOT EXISTS meetings (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  meeting_date DATE NOT NULL,
+  location VARCHAR(255),
+  notes TEXT,
+  is_upcoming BOOLEAN DEFAULT true,
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW()
+);
+
 -- Create indexes for better query performance
 CREATE INDEX idx_conversation_topics_month_id ON conversation_topics(month_id);
 CREATE INDEX idx_conversation_topics_assigned_to_id ON conversation_topics(assigned_to_id);
@@ -56,6 +67,8 @@ CREATE INDEX idx_parking_lot_assigned_to_id ON parking_lot(assigned_to_id);
 CREATE INDEX idx_parking_lot_resolved ON parking_lot(resolved_at);
 CREATE INDEX idx_newsfeed_submitter_id ON newsfeed(submitter_id);
 CREATE INDEX idx_newsfeed_created_at ON newsfeed(created_at);
+CREATE INDEX idx_meetings_date ON meetings(meeting_date);
+CREATE INDEX idx_meetings_upcoming ON meetings(is_upcoming);
 
 -- Enable RLS (Row Level Security) if needed
 ALTER TABLE users ENABLE ROW LEVEL SECURITY;
@@ -63,6 +76,7 @@ ALTER TABLE conversation_months ENABLE ROW LEVEL SECURITY;
 ALTER TABLE conversation_topics ENABLE ROW LEVEL SECURITY;
 ALTER TABLE parking_lot ENABLE ROW LEVEL SECURITY;
 ALTER TABLE newsfeed ENABLE ROW LEVEL SECURITY;
+ALTER TABLE meetings ENABLE ROW LEVEL SECURITY;
 
 -- Create policies to allow all authenticated users to read/write
 CREATE POLICY "Allow all operations on users" ON users
@@ -78,4 +92,7 @@ CREATE POLICY "Allow all operations on parking_lot" ON parking_lot
   FOR ALL USING (true) WITH CHECK (true);
 
 CREATE POLICY "Allow all operations on newsfeed" ON newsfeed
+  FOR ALL USING (true) WITH CHECK (true);
+
+CREATE POLICY "Allow all operations on meetings" ON meetings
   FOR ALL USING (true) WITH CHECK (true);

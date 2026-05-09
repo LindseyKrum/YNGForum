@@ -4,6 +4,7 @@ import ParkingLot from '../components/ParkingLot'
 import Contacts from '../components/Contacts'
 import Newsfeed from '../components/Newsfeed'
 import Locations from '../components/Locations'
+import Meetings from '../components/Meetings'
 import './Dashboard.css'
 
 function Dashboard({ onLogout }) {
@@ -21,6 +22,8 @@ function Dashboard({ onLogout }) {
         return <Newsfeed />
       case 'locations':
         return <Locations />
+      case 'meetings':
+        return <Meetings />
       default:
         return <Conversations />
     }
@@ -60,6 +63,12 @@ function Dashboard({ onLogout }) {
             onClick={() => setActiveTab('locations')}
           >
             Locations
+          </button>
+          <button
+            className={`nav-btn ${activeTab === 'meetings' ? 'active' : ''}`}
+            onClick={() => setActiveTab('meetings')}
+          >
+            Meetings
           </button>
           <button className="nav-btn logout-btn" onClick={onLogout}>
             Logout
