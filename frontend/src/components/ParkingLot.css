@@ -1,0 +1,144 @@
+.parking-lot-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.parking-lot-container h2 {
+  font-size: 28px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+.parking-form {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.parking-form input,
+.parking-form select {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.parking-form input {
+  flex: 1;
+  min-width: 200px;
+}
+
+.parking-form select {
+  min-width: 150px;
+}
+
+.parking-form button {
+  padding: 12px 20px;
+  background-color: #27ae60;
+  color: white;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.parking-form button:hover {
+  background-color: #229954;
+}
+
+.items-list {
+  display: grid;
+  gap: 15px;
+}
+
+.empty {
+  text-align: center;
+  color: #999;
+  padding: 40px;
+  background: white;
+  border-radius: 8px;
+}
+
+.item-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid #f39c12;
+}
+
+.item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.item-header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.priority-badge {
+  padding: 4px 12px;
+  color: white;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.assigned {
+  color: #666;
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.added-date {
+  color: #999;
+  margin: 8px 0;
+  font-size: 13px;
+}
+
+.item-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.resolve-btn {
+  padding: 8px 16px;
+  background-color: #27ae60;
+  color: white;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.resolve-btn:hover {
+  background-color: #229954;
+}
+
+.delete-btn {
+  padding: 8px 16px;
+  background-color: #e74c3c;
+  color: white;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}

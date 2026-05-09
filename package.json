@@ -1,0 +1,15 @@
+{
+  "name": "team-dashboard",
+  "version": "1.0.0",
+  "description": "Collaborative team dashboard for conversation tracking, contacts, and updates",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=frontend & npm run dev --workspace=backend",
+    "build": "npm run build --workspace=frontend && npm run build --workspace=backend",
+    "start": "npm start --workspace=backend"
+  }
+}
