@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { ATTENDEES } from '../utils/attendees'
 import './Contacts.css'
 
 function Contacts() {
@@ -99,9 +100,18 @@ function Contacts() {
       )}
 
       <div className="contacts-grid">
-        {users.length === 0 ? (
-          <p className="empty">No contacts yet</p>
-        ) : (
+        {ATTENDEES.map(person => (
+          <div key={person.id} className="contact-card team-member">
+            <div className="contact-header">
+              <div>
+                <h3>{person.flag} {person.name}</h3>
+                <p className="role">Team Member</p>
+              </div>
+            </div>
+          </div>
+        ))}
+
+        {users.length === 0 ? null : (
           users.map(user => (
             <div key={user.id} className="contact-card">
               <div className="contact-header">
