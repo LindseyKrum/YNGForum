@@ -7,7 +7,8 @@ import userRoutes from './routes/users.js'
 import conversationRoutes from './routes/conversations.js'
 import parkingLotRoutes from './routes/parking-lot.js'
 import newsfeedRoutes from './routes/newsfeed.js'
-import meetingsRoutes from './routes/meetings.js'
+import forumRoutes from './routes/forums.js'
+import forumNotesRoutes from './routes/forum-notes.js'
 
 dotenv.config()
 
@@ -30,7 +31,8 @@ app.use('/api/users', userRoutes)
 app.use('/api/conversations', conversationRoutes)
 app.use('/api/parking-lot', parkingLotRoutes)
 app.use('/api/newsfeed', newsfeedRoutes)
-app.use('/api/meetings', meetingsRoutes)
+app.use('/api/forums', forumRoutes)
+app.use('/api/forum-notes', forumNotesRoutes)
 
 // Health check
 app.get('/api/health', (req, res) => {

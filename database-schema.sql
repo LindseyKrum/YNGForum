@@ -49,15 +49,38 @@ CREATE TABLE IF NOT EXISTS newsfeed (
   created_at TIMESTAMP DEFAULT NOW()
 );
 
--- Create meetings table
-CREATE TABLE IF NOT EXISTS meetings (
+-- Create forums table (replaces meetings)
+CREATE TABLE IF NOT EXISTS forums (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  meeting_date DATE NOT NULL,
-  location VARCHAR(255),
-  notes TEXT,
-  is_upcoming BOOLEAN DEFAULT true,
+  forum_date DATE NOT NULL,
+  city VARCHAR(255) NOT NULL,
+  host_name VARCHAR(255) NOT NULL,
+  host_location VARCHAR(255),
+  deep_dive_topic VARCHAR(255),
+  deep_dive_person_id INTEGER,
   created_at TIMESTAMP DEFAULT NOW(),
   updated_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Create forum_notes table (tracks notes for each person in each forum)
+CREATE TABLE IF NOT EXISTS forum_notes (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  forum_id UUID NOT NULL REFERENCES forums(id) ON DELETE CASCADE,
+  person_id INTEGER NOT NULL,
+  note_field_1 TEXT,
+  note_field_2 TEXT,
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Create keyword_flags table (auto-generated keyword tracking)
+CREATE TABLE IF NOT EXISTS keyword_flags (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  person_id INTEGER NOT NULL,
+  keyword VARCHAR(255) NOT NULL,
+  occurrence_count INTEGER DEFAULT 1,
+  forums_appearing_in INTEGER[] DEFAULT ARRAY[]::INTEGER[],
+  flagged_at TIMESTAMP DEFAULT NOW()
 );
 
 -- Create indexes for better query performance
@@ -67,8 +90,11 @@ CREATE INDEX idx_parking_lot_assigned_to_id ON parking_lot(assigned_to_id);
 CREATE INDEX idx_parking_lot_resolved ON parking_lot(resolved_at);
 CREATE INDEX idx_newsfeed_submitter_id ON newsfeed(submitter_id);
 CREATE INDEX idx_newsfeed_created_at ON newsfeed(created_at);
-CREATE INDEX idx_meetings_date ON meetings(meeting_date);
-CREATE INDEX idx_meetings_upcoming ON meetings(is_upcoming);
+CREATE INDEX idx_forums_date ON forums(forum_date);
+CREATE INDEX idx_forum_notes_forum_id ON forum_notes(forum_id);
+CREATE INDEX idx_forum_notes_person_id ON forum_notes(person_id);
+CREATE INDEX idx_keyword_flags_person_id ON keyword_flags(person_id);
+CREATE INDEX idx_keyword_flags_keyword ON keyword_flags(keyword);
 
 -- Enable RLS (Row Level Security) if needed
 ALTER TABLE users ENABLE ROW LEVEL SECURITY;
@@ -76,7 +102,9 @@ ALTER TABLE conversation_months ENABLE ROW LEVEL SECURITY;
 ALTER TABLE conversation_topics ENABLE ROW LEVEL SECURITY;
 ALTER TABLE parking_lot ENABLE ROW LEVEL SECURITY;
 ALTER TABLE newsfeed ENABLE ROW LEVEL SECURITY;
-ALTER TABLE meetings ENABLE ROW LEVEL SECURITY;
+ALTER TABLE forums ENABLE ROW LEVEL SECURITY;
+ALTER TABLE forum_notes ENABLE ROW LEVEL SECURITY;
+ALTER TABLE keyword_flags ENABLE ROW LEVEL SECURITY;
 
 -- Create policies to allow all authenticated users to read/write
 CREATE POLICY "Allow all operations on users" ON users
@@ -94,5 +122,11 @@ CREATE POLICY "Allow all operations on parking_lot" ON parking_lot
 CREATE POLICY "Allow all operations on newsfeed" ON newsfeed
   FOR ALL USING (true) WITH CHECK (true);
 
-CREATE POLICY "Allow all operations on meetings" ON meetings
+CREATE POLICY "Allow all operations on forums" ON forums
+  FOR ALL USING (true) WITH CHECK (true);
+
+CREATE POLICY "Allow all operations on forum_notes" ON forum_notes
+  FOR ALL USING (true) WITH CHECK (true);
+
+CREATE POLICY "Allow all operations on keyword_flags" ON keyword_flags
   FOR ALL USING (true) WITH CHECK (true);

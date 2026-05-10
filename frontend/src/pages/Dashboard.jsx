@@ -1,84 +1,122 @@
 import { useState } from 'react'
+import Forums from '../components/Forums'
 import Conversations from '../components/Conversations'
 import ParkingLot from '../components/ParkingLot'
 import Contacts from '../components/Contacts'
 import Newsfeed from '../components/Newsfeed'
 import Locations from '../components/Locations'
-import Meetings from '../components/Meetings'
+import CompareNotes from '../components/CompareNotes'
 import './Dashboard.css'
 
 function Dashboard({ onLogout }) {
-  const [activeTab, setActiveTab] = useState('conversations')
+  const [expandedSections, setExpandedSections] = useState({ forums: true })
 
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'conversations':
-        return <Conversations />
-      case 'parking-lot':
-        return <ParkingLot />
-      case 'contacts':
-        return <Contacts />
-      case 'newsfeed':
-        return <Newsfeed />
-      case 'locations':
-        return <Locations />
-      case 'meetings':
-        return <Meetings />
-      default:
-        return <Conversations />
-    }
+  const toggleSection = (section) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }))
   }
 
   return (
     <div className="dashboard">
-      <nav className="navbar">
-        <h1>Team Dashboard</h1>
-        <div className="nav-items">
-          <button
-            className={`nav-btn ${activeTab === 'conversations' ? 'active' : ''}`}
-            onClick={() => setActiveTab('conversations')}
-          >
-            Conversations
-          </button>
-          <button
-            className={`nav-btn ${activeTab === 'parking-lot' ? 'active' : ''}`}
-            onClick={() => setActiveTab('parking-lot')}
-          >
-            Parking Lot
-          </button>
-          <button
-            className={`nav-btn ${activeTab === 'contacts' ? 'active' : ''}`}
-            onClick={() => setActiveTab('contacts')}
-          >
-            Contacts
-          </button>
-          <button
-            className={`nav-btn ${activeTab === 'newsfeed' ? 'active' : ''}`}
-            onClick={() => setActiveTab('newsfeed')}
-          >
-            Newsfeed
-          </button>
-          <button
-            className={`nav-btn ${activeTab === 'locations' ? 'active' : ''}`}
-            onClick={() => setActiveTab('locations')}
-          >
-            Locations
-          </button>
-          <button
-            className={`nav-btn ${activeTab === 'meetings' ? 'active' : ''}`}
-            onClick={() => setActiveTab('meetings')}
-          >
-            Meetings
-          </button>
-          <button className="nav-btn logout-btn" onClick={onLogout}>
-            Logout
-          </button>
+      <header className="dashboard-header">
+        <div className="header-left">
+          <h1>📋 Team Forum Dashboard</h1>
         </div>
-      </nav>
-      <div className="content">
-        {renderContent()}
-      </div>
+        <button className="logout-btn" onClick={onLogout} aria-label="Sign out">
+          Sign Out
+        </button>
+      </header>
+
+      <main className="dashboard-content">
+        <ExpandableSection
+          title="📅 Forums"
+          id="forums"
+          isExpanded={expandedSections.forums}
+          onToggle={toggleSection}
+        >
+          <Forums />
+        </ExpandableSection>
+
+        <ExpandableSection
+          title="💬 Conversations"
+          id="conversations"
+          isExpanded={expandedSections.conversations}
+          onToggle={toggleSection}
+        >
+          <Conversations />
+        </ExpandableSection>
+
+        <ExpandableSection
+          title="🅿️ Parking Lot"
+          id="parking-lot"
+          isExpanded={expandedSections['parking-lot']}
+          onToggle={toggleSection}
+        >
+          <ParkingLot />
+        </ExpandableSection>
+
+        <ExpandableSection
+          title="👥 Contacts"
+          id="contacts"
+          isExpanded={expandedSections.contacts}
+          onToggle={toggleSection}
+        >
+          <Contacts />
+        </ExpandableSection>
+
+        <ExpandableSection
+          title="📸 Newsfeed"
+          id="newsfeed"
+          isExpanded={expandedSections.newsfeed}
+          onToggle={toggleSection}
+        >
+          <Newsfeed />
+        </ExpandableSection>
+
+        <ExpandableSection
+          title="🗺️ Locations"
+          id="locations"
+          isExpanded={expandedSections.locations}
+          onToggle={toggleSection}
+        >
+          <Locations />
+        </ExpandableSection>
+
+        <ExpandableSection
+          title="🔍 Compare Notes"
+          id="compare"
+          isExpanded={expandedSections.compare}
+          onToggle={toggleSection}
+        >
+          <CompareNotes />
+        </ExpandableSection>
+      </main>
     </div>
+  )
+}
+
+function ExpandableSection({ title, id, isExpanded, onToggle, children }) {
+  return (
+    <section className="expandable-section" role="region" aria-label={title}>
+      <button
+        className="section-header"
+        onClick={() => onToggle(id)}
+        aria-expanded={isExpanded}
+        aria-controls={`section-${id}`}
+      >
+        <span className="section-title">{title}</span>
+        <span className="toggle-icon" aria-hidden="true">
+          {isExpanded ? '−' : '+'}
+        </span>
+      </button>
+      {isExpanded && (
+        <div className="section-content" id={`section-${id}`}>
+          {children}
+        </div>
+      )}
+    </section>
   )
 }
 

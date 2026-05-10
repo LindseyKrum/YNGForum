@@ -28,19 +28,23 @@ function Auth({ onLogin }) {
   return (
     <div className="auth-container">
       <div className="auth-box">
-        <h1>Team Dashboard</h1>
-        <p className="auth-subtitle">Enter password to continue</p>
-        <form onSubmit={handleSubmit}>
+        <h1 className="auth-title">Team Forum Dashboard</h1>
+        <p className="auth-subtitle">Enter your access password</p>
+        <form onSubmit={handleSubmit} className="auth-form">
+          <label htmlFor="password" className="sr-only">Password</label>
           <input
+            id="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
             disabled={loading}
+            aria-label="Password"
+            required
           />
-          {error && <p className="error">{error}</p>}
-          <button type="submit" disabled={loading}>
-            {loading ? 'Logging in...' : 'Login'}
+          {error && <p className="error" role="alert">{error}</p>}
+          <button type="submit" disabled={loading} aria-busy={loading}>
+            {loading ? 'Signing in...' : 'Sign In'}
           </button>
         </form>
       </div>

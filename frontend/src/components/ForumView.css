@@ -1,0 +1,260 @@
+.forum-view {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.back-btn {
+  padding: 8px 16px;
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 25px;
+  transition: all 0.2s;
+}
+
+.back-btn:hover {
+  background-color: #f5f5f5;
+  border-color: #00A896;
+}
+
+.back-btn:focus {
+  outline: 2px solid #00A896;
+  outline-offset: 2px;
+}
+
+.forum-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #00A896;
+  padding-bottom: 20px;
+}
+
+.forum-header h2 {
+  margin: 0 0 8px 0;
+  font-size: 28px;
+  color: #333;
+}
+
+.forum-meta {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.delete-btn {
+  padding: 10px 20px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+.delete-btn:focus {
+  outline: 2px solid #e74c3c;
+  outline-offset: 2px;
+}
+
+.deep-dive-section {
+  background: linear-gradient(135deg, rgba(0, 168, 150, 0.05) 0%, rgba(0, 168, 150, 0.1) 100%);
+  padding: 25px;
+  border-radius: 8px;
+  border-left: 4px solid #00A896;
+  margin-bottom: 30px;
+}
+
+.deep-dive-section h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 18px;
+}
+
+.deep-dive-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.deep-dive-info .topic {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: #00A896;
+}
+
+.deep-dive-info .person {
+  margin: 0;
+  font-size: 15px;
+  color: #666;
+}
+
+.attendees-section h3 {
+  margin: 30px 0 20px 0;
+  font-size: 20px;
+  color: #333;
+  font-weight: 600;
+}
+
+.attendees-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 25px;
+}
+
+.attendee-card {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  border-left: 4px solid #00A896;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.attendee-header {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 12px;
+}
+
+.attendee-header h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.flag {
+  font-size: 20px;
+}
+
+.keywords-section {
+  background-color: #fff9e6;
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.keywords-label {
+  margin: 0 0 8px 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+}
+
+.keywords-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.keyword-badge {
+  background-color: #FFE4B5;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: #666;
+}
+
+.keyword-badge small {
+  font-size: 10px;
+  color: #999;
+}
+
+.attendee-card fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.attendee-card legend {
+  display: none;
+}
+
+.field-label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.attendee-card textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 80px;
+  box-sizing: border-box;
+}
+
+.attendee-card textarea:focus {
+  outline: none;
+  border-color: #00A896;
+  box-shadow: 0 0 0 2px rgba(0, 168, 150, 0.1);
+}
+
+.save-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.save-btn.unsaved {
+  background-color: #00A896;
+  color: white;
+}
+
+.save-btn.unsaved:hover {
+  background-color: #008b78;
+}
+
+.save-btn.unsaved:focus {
+  outline: 2px solid #00A896;
+  outline-offset: 2px;
+}
+
+.save-btn.saved {
+  background-color: #f0f0f0;
+  color: #999;
+  cursor: default;
+}
+
+.save-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
