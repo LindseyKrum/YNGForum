@@ -128,13 +128,18 @@ function Forums() {
             />
 
             <label htmlFor="host-name">Host Name</label>
-            <input
+            <select
               id="host-name"
-              type="text"
               value={newForum.host_name}
               onChange={(e) => setNewForum({ ...newForum, host_name: e.target.value })}
-              placeholder="Who is hosting?"
-            />
+            >
+              <option value="">Select host</option>
+              {ATTENDEES.map(person => (
+                <option key={person.id} value={person.name}>
+                  {person.flag} {person.name}
+                </option>
+              ))}
+            </select>
 
             <label htmlFor="host-location">Host Location</label>
             <input

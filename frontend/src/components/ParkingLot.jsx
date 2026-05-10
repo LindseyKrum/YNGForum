@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { ATTENDEES, getAttendeeNameById } from '../utils/attendees'
 import './ParkingLot.css'
 
 function ParkingLot() {
   const [items, setItems] = useState([])
-  const [newItem, setNewItem] = useState({ topic_name: '', priority: 'medium' })
-  const [users, setUsers] = useState([])
+  const [newItem, setNewItem] = useState({ topic_name: '', priority: 'medium', assigned_to_id: '' })
 
   useEffect(() => {
     fetchItems()
-    fetchUsers()
   }, [])
 
   const fetchItems = async () => {
@@ -18,15 +17,6 @@ function ParkingLot() {
       setItems(response.data)
     } catch (error) {
       console.error('Error fetching parking lot:', error)
-    }
-  }
-
-  const fetchUsers = async () => {
-    try {
-      const response = await axios.get('/api/users')
-      setUsers(response.data)
-    } catch (error) {
-      console.error('Error fetching users:', error)
     }
   }
 
@@ -90,11 +80,11 @@ function ParkingLot() {
         </select>
         <select
           value={newItem.assigned_to_id || ''}
-          onChange={(e) => setNewItem({ ...newItem, assigned_to_id: e.target.value || null })}
+          onChange={(e) => setNewItem({ ...newItem, assigned_to_id: e.target.value ? parseInt(e.target.value) : null })}
         >
           <option value="">Assign to...</option>
-          {users.map(user => (
-            <option key={user.id} value={user.id}>{user.name}</option>
+          {ATTENDEES.map(person => (
+            <option key={person.id} value={person.id}>{person.flag} {person.name}</option>
           ))}
         </select>
         <button type="submit">Add Item</button>
@@ -115,8 +105,8 @@ function ParkingLot() {
                   {item.priority}
                 </span>
               </div>
-              {item.assigned_user && (
-                <p className="assigned">Assigned to: {item.assigned_user.name}</p>
+              {item.assigned_to_id && (
+                <p className="assigned">Assigned to: {getAttendeeNameById(item.assigned_to_id)}</p>
               )}
               <p className="added-date">Added: {new Date(item.added_at).toLocaleDateString()}</p>
               <div className="item-actions">

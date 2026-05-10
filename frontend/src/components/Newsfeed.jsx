@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { ATTENDEES, getAttendeeNameById } from '../utils/attendees'
 import './Newsfeed.css'
 
 function Newsfeed() {
   const [posts, setPosts] = useState([])
-  const [users, setUsers] = useState([])
   const [newPost, setNewPost] = useState({
     content_text: '',
     submitter_id: '',
@@ -14,7 +14,6 @@ function Newsfeed() {
 
   useEffect(() => {
     fetchPosts()
-    fetchUsers()
   }, [])
 
   const fetchPosts = async () => {
@@ -23,15 +22,6 @@ function Newsfeed() {
       setPosts(response.data)
     } catch (error) {
       console.error('Error fetching posts:', error)
-    }
-  }
-
-  const fetchUsers = async () => {
-    try {
-      const response = await axios.get('/api/users')
-      setUsers(response.data)
-    } catch (error) {
-      console.error('Error fetching users:', error)
     }
   }
 
@@ -94,8 +84,8 @@ function Newsfeed() {
           required
         >
           <option value="">Your name</option>
-          {users.map(user => (
-            <option key={user.id} value={user.id}>{user.name}</option>
+          {ATTENDEES.map(person => (
+            <option key={person.id} value={person.id}>{person.flag} {person.name}</option>
           ))}
         </select>
         <textarea
@@ -131,8 +121,8 @@ function Newsfeed() {
           posts.map(post => (
             <div key={post.id} className="post-card">
               <div className="post-header">
-                <div>
-                  <strong>{post.submitter?.name}</strong>
+                <div className="post-info">
+                  <strong>{getAttendeeNameById(post.submitter_id) || 'Unknown'}</strong>
                   <span className="timestamp">
                     {new Date(post.created_at).toLocaleString()}
                   </span>
