@@ -47,7 +47,18 @@ router.get('/:id', async (req, res) => {
 // Create forum
 router.post('/', async (req, res) => {
   try {
-    const { forum_date, city, host_name, host_location, deep_dive_topic, deep_dive_person_id } = req.body
+    const {
+      forum_date,
+      city,
+      host_name,
+      host_location,
+      deep_dive_topic,
+      deep_dive_person_id,
+      deep_dive_2_topic,
+      deep_dive_2_person_id,
+      deep_dive_3_topic,
+      deep_dive_3_person_id
+    } = req.body
 
     const { data, error } = await supabase
       .from('forums')
@@ -58,6 +69,10 @@ router.post('/', async (req, res) => {
         host_location,
         deep_dive_topic,
         deep_dive_person_id,
+        deep_dive_2_topic,
+        deep_dive_2_person_id,
+        deep_dive_3_topic,
+        deep_dive_3_person_id,
         created_at: new Date().toISOString()
       }])
       .select()
@@ -73,7 +88,18 @@ router.post('/', async (req, res) => {
 // Update forum
 router.put('/:id', async (req, res) => {
   try {
-    const { forum_date, city, host_name, host_location, deep_dive_topic, deep_dive_person_id } = req.body
+    const {
+      forum_date,
+      city,
+      host_name,
+      host_location,
+      deep_dive_topic,
+      deep_dive_person_id,
+      deep_dive_2_topic,
+      deep_dive_2_person_id,
+      deep_dive_3_topic,
+      deep_dive_3_person_id
+    } = req.body
 
     const { data, error } = await supabase
       .from('forums')
@@ -84,6 +110,10 @@ router.put('/:id', async (req, res) => {
         host_location,
         deep_dive_topic,
         deep_dive_person_id,
+        deep_dive_2_topic,
+        deep_dive_2_person_id,
+        deep_dive_3_topic,
+        deep_dive_3_person_id,
         updated_at: new Date().toISOString()
       })
       .eq('id', req.params.id)

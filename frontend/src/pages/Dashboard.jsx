@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import Forums from '../components/Forums'
-import Conversations from '../components/Conversations'
 import ParkingLot from '../components/ParkingLot'
 import Contacts from '../components/Contacts'
 import Newsfeed from '../components/Newsfeed'
@@ -9,15 +8,6 @@ import CompareNotes from '../components/CompareNotes'
 import './Dashboard.css'
 
 function Dashboard({ onLogout }) {
-  const [expandedSections, setExpandedSections] = useState({ forums: true })
-
-  const toggleSection = (section) => {
-    setExpandedSections(prev => ({
-      ...prev,
-      [section]: !prev[section]
-    }))
-  }
-
   return (
     <div className="dashboard">
       <header className="dashboard-header">
@@ -30,93 +20,33 @@ function Dashboard({ onLogout }) {
       </header>
 
       <main className="dashboard-content">
-        <ExpandableSection
-          title="📅 Forums"
-          id="forums"
-          isExpanded={expandedSections.forums}
-          onToggle={toggleSection}
-        >
+        <section className="hero-section">
           <Forums />
-        </ExpandableSection>
+        </section>
 
-        <ExpandableSection
-          title="💬 Conversations"
-          id="conversations"
-          isExpanded={expandedSections.conversations}
-          onToggle={toggleSection}
-        >
-          <Conversations />
-        </ExpandableSection>
+        <div className="card-grid">
+          <section className="card-section">
+            <CompareNotes />
+          </section>
 
-        <ExpandableSection
-          title="🅿️ Parking Lot"
-          id="parking-lot"
-          isExpanded={expandedSections['parking-lot']}
-          onToggle={toggleSection}
-        >
-          <ParkingLot />
-        </ExpandableSection>
+          <section className="card-section">
+            <ParkingLot />
+          </section>
 
-        <ExpandableSection
-          title="👥 Contacts"
-          id="contacts"
-          isExpanded={expandedSections.contacts}
-          onToggle={toggleSection}
-        >
-          <Contacts />
-        </ExpandableSection>
+          <section className="card-section">
+            <Contacts />
+          </section>
 
-        <ExpandableSection
-          title="📸 Newsfeed"
-          id="newsfeed"
-          isExpanded={expandedSections.newsfeed}
-          onToggle={toggleSection}
-        >
-          <Newsfeed />
-        </ExpandableSection>
+          <section className="card-section">
+            <Newsfeed />
+          </section>
 
-        <ExpandableSection
-          title="🗺️ Locations"
-          id="locations"
-          isExpanded={expandedSections.locations}
-          onToggle={toggleSection}
-        >
-          <Locations />
-        </ExpandableSection>
-
-        <ExpandableSection
-          title="🔍 Compare Notes"
-          id="compare"
-          isExpanded={expandedSections.compare}
-          onToggle={toggleSection}
-        >
-          <CompareNotes />
-        </ExpandableSection>
+          <section className="card-section">
+            <Locations />
+          </section>
+        </div>
       </main>
     </div>
-  )
-}
-
-function ExpandableSection({ title, id, isExpanded, onToggle, children }) {
-  return (
-    <section className="expandable-section" role="region" aria-label={title}>
-      <button
-        className="section-header"
-        onClick={() => onToggle(id)}
-        aria-expanded={isExpanded}
-        aria-controls={`section-${id}`}
-      >
-        <span className="section-title">{title}</span>
-        <span className="toggle-icon" aria-hidden="true">
-          {isExpanded ? '−' : '+'}
-        </span>
-      </button>
-      {isExpanded && (
-        <div className="section-content" id={`section-${id}`}>
-          {children}
-        </div>
-      )}
-    </section>
   )
 }
 

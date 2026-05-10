@@ -51,9 +51,20 @@ function ForumView({ forum, onBack, onDelete }) {
     }
   }
 
-  const deepDivePersonName = forum.deep_dive_person_id
-    ? getAttendeeNameById(forum.deep_dive_person_id)
-    : 'TBD'
+  const deepDives = [
+    {
+      topic: forum.deep_dive_topic,
+      personId: forum.deep_dive_person_id
+    },
+    {
+      topic: forum.deep_dive_2_topic,
+      personId: forum.deep_dive_2_person_id
+    },
+    {
+      topic: forum.deep_dive_3_topic,
+      personId: forum.deep_dive_3_person_id
+    }
+  ].filter(dd => dd.topic)
 
   return (
     <div className="forum-view">
@@ -69,12 +80,16 @@ function ForumView({ forum, onBack, onDelete }) {
         <button className="delete-btn" onClick={onDelete} aria-label="Delete forum">Delete</button>
       </div>
 
-      {forum.deep_dive_topic && (
-        <div className="deep-dive-section" role="region" aria-label="Deep dive topic">
-          <h3>🎯 Deep Dive</h3>
-          <div className="deep-dive-info">
-            <p className="topic">{forum.deep_dive_topic}</p>
-            <p className="person">Led by: <strong>{deepDivePersonName}</strong></p>
+      {deepDives.length > 0 && (
+        <div className="deep-dives-container" role="region" aria-label="Deep dive topics">
+          <h3>🎯 Deep Dives</h3>
+          <div className="deep-dives-grid">
+            {deepDives.map((dd, idx) => (
+              <div key={idx} className="deep-dive-section">
+                <p className="topic">{dd.topic}</p>
+                <p className="person">Led by: <strong>{getAttendeeNameById(dd.personId) || 'TBD'}</strong></p>
+              </div>
+            ))}
           </div>
         </div>
       )}

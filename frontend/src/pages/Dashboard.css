@@ -46,82 +46,41 @@
 
 .dashboard-content {
   flex: 1;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   width: 100%;
   padding: 40px;
-}
-
-.expandable-section {
-  margin-bottom: 20px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-}
-
-.section-header {
-  width: 100%;
-  padding: 20px 25px;
-  background: white;
-  border: none;
-  border-left: 4px solid #00A896;
-  text-align: left;
-  cursor: pointer;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 16px;
-  font-weight: 600;
-  color: #333333;
-  transition: background-color 0.2s;
+  flex-direction: column;
+  gap: 40px;
 }
 
-.section-header:hover {
-  background-color: #f9f9f9;
-}
-
-.section-header:focus {
-  outline: 2px solid #00A896;
-  outline-offset: -2px;
-}
-
-.section-title {
-  margin: 0;
-  flex: 1;
-}
-
-.toggle-icon {
-  font-size: 24px;
-  color: #00A896;
-  font-weight: 300;
-  transition: transform 0.2s;
-}
-
-.section-header[aria-expanded="false"] .toggle-icon {
-  transform: rotate(0deg);
-}
-
-.section-header[aria-expanded="true"] .toggle-icon {
-  transform: rotate(0deg);
-}
-
-.section-content {
-  padding: 30px;
-  border-top: 1px solid #f0f0f0;
+.hero-section {
+  width: 100%;
   background: white;
-  animation: slideDown 0.3s ease-out;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+  width: 100%;
+}
+
+.card-section {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-section:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 768px) {
@@ -133,13 +92,19 @@
 
   .dashboard-content {
     padding: 20px;
+    gap: 20px;
   }
 
-  .section-header {
-    padding: 15px 20px;
+  .hero-section {
+    padding: 20px;
   }
 
-  .section-content {
+  .card-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .card-section {
     padding: 20px;
   }
 }

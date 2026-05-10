@@ -58,6 +58,10 @@ CREATE TABLE IF NOT EXISTS forums (
   host_location VARCHAR(255),
   deep_dive_topic VARCHAR(255),
   deep_dive_person_id INTEGER,
+  deep_dive_2_topic VARCHAR(255),
+  deep_dive_2_person_id INTEGER,
+  deep_dive_3_topic VARCHAR(255),
+  deep_dive_3_person_id INTEGER,
   created_at TIMESTAMP DEFAULT NOW(),
   updated_at TIMESTAMP DEFAULT NOW()
 );

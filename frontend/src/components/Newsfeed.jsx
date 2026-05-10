@@ -84,7 +84,8 @@ function Newsfeed() {
 
   return (
     <div className="newsfeed-container">
-      <h2>Newsfeed</h2>
+      <h2>📸 Newsfeed</h2>
+      <p className="subtitle">Latest updates from the team</p>
 
       <form onSubmit={handleSubmitPost} className="post-form">
         <select

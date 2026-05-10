@@ -69,7 +69,7 @@ function ParkingLot() {
 
   return (
     <div className="parking-lot-container">
-      <h2>Parking Lot</h2>
+      <h2>🅿️ Parking Lot</h2>
       <p className="subtitle">Topics to discuss later</p>
 
       <form onSubmit={handleAddItem} className="parking-form">

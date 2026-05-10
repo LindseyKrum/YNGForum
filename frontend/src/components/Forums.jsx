@@ -14,7 +14,11 @@ function Forums() {
     host_name: '',
     host_location: '',
     deep_dive_topic: '',
-    deep_dive_person_id: ''
+    deep_dive_person_id: '',
+    deep_dive_2_topic: '',
+    deep_dive_2_person_id: '',
+    deep_dive_3_topic: '',
+    deep_dive_3_person_id: ''
   })
 
   useEffect(() => {
@@ -37,7 +41,9 @@ function Forums() {
     try {
       await axios.post('/api/forums', {
         ...newForum,
-        deep_dive_person_id: parseInt(newForum.deep_dive_person_id) || null
+        deep_dive_person_id: parseInt(newForum.deep_dive_person_id) || null,
+        deep_dive_2_person_id: parseInt(newForum.deep_dive_2_person_id) || null,
+        deep_dive_3_person_id: parseInt(newForum.deep_dive_3_person_id) || null
       })
       setNewForum({
         forum_date: '',
@@ -45,7 +51,11 @@ function Forums() {
         host_name: '',
         host_location: '',
         deep_dive_topic: '',
-        deep_dive_person_id: ''
+        deep_dive_person_id: '',
+        deep_dive_2_topic: '',
+        deep_dive_2_person_id: '',
+        deep_dive_3_topic: '',
+        deep_dive_3_person_id: ''
       })
       setShowForm(false)
       fetchForums()
@@ -135,7 +145,7 @@ function Forums() {
               placeholder="e.g., Conference Room A"
             />
 
-            <label htmlFor="deep-dive-topic">Deep Dive Topic</label>
+            <label htmlFor="deep-dive-topic">Deep Dive 1 Topic</label>
             <input
               id="deep-dive-topic"
               type="text"
@@ -144,11 +154,57 @@ function Forums() {
               placeholder="What's the focus?"
             />
 
-            <label htmlFor="deep-dive-person">Deep Dive Led By</label>
+            <label htmlFor="deep-dive-person">Deep Dive 1 Led By</label>
             <select
               id="deep-dive-person"
               value={newForum.deep_dive_person_id}
               onChange={(e) => setNewForum({ ...newForum, deep_dive_person_id: e.target.value })}
+            >
+              <option value="">Select person</option>
+              {ATTENDEES.map(person => (
+                <option key={person.id} value={person.id}>
+                  {person.name}
+                </option>
+              ))}
+            </select>
+
+            <label htmlFor="deep-dive-2-topic">Deep Dive 2 Topic</label>
+            <input
+              id="deep-dive-2-topic"
+              type="text"
+              value={newForum.deep_dive_2_topic}
+              onChange={(e) => setNewForum({ ...newForum, deep_dive_2_topic: e.target.value })}
+              placeholder="Second focus topic"
+            />
+
+            <label htmlFor="deep-dive-2-person">Deep Dive 2 Led By</label>
+            <select
+              id="deep-dive-2-person"
+              value={newForum.deep_dive_2_person_id}
+              onChange={(e) => setNewForum({ ...newForum, deep_dive_2_person_id: e.target.value })}
+            >
+              <option value="">Select person</option>
+              {ATTENDEES.map(person => (
+                <option key={person.id} value={person.id}>
+                  {person.name}
+                </option>
+              ))}
+            </select>
+
+            <label htmlFor="deep-dive-3-topic">Deep Dive 3 Topic</label>
+            <input
+              id="deep-dive-3-topic"
+              type="text"
+              value={newForum.deep_dive_3_topic}
+              onChange={(e) => setNewForum({ ...newForum, deep_dive_3_topic: e.target.value })}
+              placeholder="Third focus topic"
+            />
+
+            <label htmlFor="deep-dive-3-person">Deep Dive 3 Led By</label>
+            <select
+              id="deep-dive-3-person"
+              value={newForum.deep_dive_3_person_id}
+              onChange={(e) => setNewForum({ ...newForum, deep_dive_3_person_id: e.target.value })}
             >
               <option value="">Select person</option>
               {ATTENDEES.map(person => (

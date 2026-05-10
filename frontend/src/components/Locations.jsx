@@ -27,7 +27,7 @@ function Locations() {
 
   return (
     <div className="locations-container">
-      <h2>Locations</h2>
+      <h2>🗺️ Locations</h2>
       <p className="subtitle">Team locations map</p>
 
       <div className="map-section">

@@ -52,7 +52,7 @@ function Contacts() {
   return (
     <div className="contacts-container">
       <div className="contacts-header">
-        <h2>Contact Directory</h2>
+        <h2>👥 Contacts</h2>
         <button
           className="add-btn"
           onClick={() => setShowForm(!showForm)}
