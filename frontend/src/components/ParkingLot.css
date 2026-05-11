@@ -73,6 +73,8 @@
   display: grid;
   gap: 15px;
   margin-top: 15px;
+  max-height: 320px;
+  overflow-y: auto;
 }
 
 .empty {
