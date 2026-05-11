@@ -1,0 +1,47 @@
+<svg width="1200" height="700" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="700" fill="#e8f4f8"/>
+  
+  <!-- Title -->
+  <text x="600" y="35" font-size="32" font-weight="bold" text-anchor="middle" fill="#333">
+    YNG Forum Team Locations
+  </text>
+  
+  <!-- Map background (simplified Europe) -->
+  <rect x="50" y="80" width="1100" height="570" fill="#d4e6f1" stroke="#999" stroke-width="2" rx="8"/>
+  
+  <!-- Locations (approximate pixel positions for Europe) -->
+  <!-- London: ~150, 200 -->
+  <!-- Prague: ~500, 220 -->
+  <!-- Munich: ~530, 280 -->
+  <!-- Florence: ~530, 350 -->
+  <!-- Cyprus: ~650, 420 -->
+  <!-- NYC: ~50 (off map, right side indicator) -->
+  <circle cx="200" cy="630" r="15" fill="#FF6B35" stroke="white" stroke-width="3"/>
+  <text x="200" y="645" font-size="14" font-weight="bold" text-anchor="middle" fill="white">M</text>
+  <circle cx="580" cy="260" r="15" fill="#00A896" stroke="white" stroke-width="3"/>
+  <text x="580" y="275" font-size="14" font-weight="bold" text-anchor="middle" fill="white">E</text>
+  <circle cx="700" cy="500" r="15" fill="#2D9F4F" stroke="white" stroke-width="3"/>
+  <text x="700" y="515" font-size="14" font-weight="bold" text-anchor="middle" fill="white">D</text>
+  <circle cx="580" cy="430" r="15" fill="#FF6B35" stroke="white" stroke-width="3"/>
+  <text x="580" y="445" font-size="14" font-weight="bold" text-anchor="middle" fill="white">M</text>
+  <circle cx="550" cy="300" r="15" fill="#00A896" stroke="white" stroke-width="3"/>
+  <text x="550" y="315" font-size="14" font-weight="bold" text-anchor="middle" fill="white">P</text>
+  <circle cx="200" cy="280" r="15" fill="#2D9F4F" stroke="white" stroke-width="3"/>
+  <text x="200" y="295" font-size="14" font-weight="bold" text-anchor="middle" fill="white">A</text>
+
+  <!-- Legend -->
+  <text x="60" y="680" font-size="14" font-weight="bold" fill="#333">Team Members:</text>
+  <circle cx="60" cy="665" r="6" fill="#FF6B35"/>
+  <text x="75" y="670" font-size="13" fill="#333">Maya - NYC</text>
+  <circle cx="440" cy="665" r="6" fill="#00A896"/>
+  <text x="455" y="670" font-size="13" fill="#333">Erik - Munich</text>
+  <circle cx="820" cy="665" r="6" fill="#2D9F4F"/>
+  <text x="835" y="670" font-size="13" fill="#333">Dimitri - Cyprus</text>
+  <circle cx="60" cy="690" r="6" fill="#FF6B35"/>
+  <text x="75" y="695" font-size="13" fill="#333">Marco - Florence</text>
+  <circle cx="440" cy="690" r="6" fill="#00A896"/>
+  <text x="455" y="695" font-size="13" fill="#333">Petra - Prague</text>
+  <circle cx="820" cy="690" r="6" fill="#2D9F4F"/>
+  <text x="835" y="695" font-size="13" fill="#333">Amir - London</text>
+</svg>

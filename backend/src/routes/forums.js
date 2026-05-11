@@ -48,7 +48,8 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const {
-      forum_date,
+      forum_start_date,
+      forum_end_date,
       city,
       host_name,
       host_location,
@@ -63,7 +64,9 @@ router.post('/', async (req, res) => {
     const { data, error } = await supabase
       .from('forums')
       .insert([{
-        forum_date,
+        forum_date: forum_start_date,
+        forum_start_date,
+        forum_end_date,
         city,
         host_name,
         host_location,
@@ -89,7 +92,8 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const {
-      forum_date,
+      forum_start_date,
+      forum_end_date,
       city,
       host_name,
       host_location,
@@ -104,7 +108,9 @@ router.put('/:id', async (req, res) => {
     const { data, error } = await supabase
       .from('forums')
       .update({
-        forum_date,
+        forum_date: forum_start_date,
+        forum_start_date,
+        forum_end_date,
         city,
         host_name,
         host_location,

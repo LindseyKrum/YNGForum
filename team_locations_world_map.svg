@@ -1,0 +1,97 @@
+<svg width="1600" height="900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
+  <!-- Background -->
+  <defs>
+    <style>
+      .ocean { fill: #d4e6f1; }
+      .land { fill: #e8f5e9; stroke: #aaa; stroke-width: 0.5; }
+      .marker-circle { stroke: white; stroke-width: 3; }
+      .label { font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; }
+      .title { font-size: 36px; font-weight: bold; fill: #333; }
+      .legend-title { font-size: 16px; font-weight: bold; fill: #333; }
+      .legend-item { font-size: 13px; fill: #333; }
+    </style>
+  </defs>
+  
+  <!-- Ocean background -->
+  <rect width="1600" height="900" class="ocean"/>
+  
+  <!-- Title -->
+  <text x="800" y="40" class="title" text-anchor="middle">
+    YNG Forum Team Locations - World Map
+  </text>
+  
+  <!-- Simplified world continents (very rough outlines) -->
+  <!-- North America -->
+  <path class="land" d="M 150 250 L 220 200 L 250 180 L 280 200 L 300 250 L 280 350 L 250 380 L 200 360 L 150 300 Z"/>
+  
+  <!-- South America -->
+  <path class="land" d="M 260 350 L 310 330 L 320 400 L 300 500 L 270 480 Z"/>
+  
+  <!-- Europe -->
+  <path class="land" d="M 450 200 L 550 180 L 600 200 L 620 250 L 600 300 L 500 320 L 450 280 Z"/>
+  
+  <!-- Africa -->
+  <path class="land" d="M 550 300 L 650 280 L 700 350 L 680 500 L 600 520 L 550 450 Z"/>
+  
+  <!-- Middle East -->
+  <path class="land" d="M 620 250 L 700 240 L 730 300 L 700 350 L 650 330 Z"/>
+  
+  <!-- Russia/Asia -->
+  <path class="land" d="M 600 150 L 800 140 L 850 200 L 750 280 L 650 260 Z"/>
+  
+  <!-- Central Asia -->
+  <path class="land" d="M 650 240 L 750 220 L 780 280 L 700 320 Z"/>
+  
+  <!-- East Asia -->
+  <path class="land" d="M 800 200 L 900 180 L 950 220 L 900 300 L 820 280 Z"/>
+  
+  <!-- Southeast Asia -->
+  <path class="land" d="M 850 280 L 920 290 L 900 350 L 850 340 Z"/>
+  
+  <!-- Australia -->
+  <path class="land" d="M 950 450 L 1000 440 L 1010 500 L 960 510 Z"/>
+  
+  <!-- Team member locations with coordinates (x, y) on the map -->
+  <!-- NYC: ~230, 280 -->
+  <!-- London: ~520, 240 -->
+  <!-- Munich: ~570, 250 -->
+  <!-- Prague: ~560, 245 -->
+  <!-- Florence: ~550, 280 -->
+  <!-- Cyprus: ~620, 310 -->
+  <!-- Maya in NYC -->
+  <circle cx="230" cy="280" r="18" class="marker-circle" fill="#FF6B35"/>
+  <text x="230" y="286" class="label" text-anchor="middle" fill="white">M</text>
+  <!-- Amir in London -->
+  <circle cx="520" cy="240" r="18" class="marker-circle" fill="#00A896"/>
+  <text x="520" y="246" class="label" text-anchor="middle" fill="white">A</text>
+  <!-- Petra in Prague -->
+  <circle cx="560" cy="245" r="18" class="marker-circle" fill="#2D9F4F"/>
+  <text x="560" y="251" class="label" text-anchor="middle" fill="white">P</text>
+  <!-- Erik in Munich -->
+  <circle cx="570" cy="250" r="18" class="marker-circle" fill="#FF6B35"/>
+  <text x="570" y="256" class="label" text-anchor="middle" fill="white">E</text>
+  <!-- Marco in Florence -->
+  <circle cx="550" cy="280" r="18" class="marker-circle" fill="#00A896"/>
+  <text x="550" y="286" class="label" text-anchor="middle" fill="white">M</text>
+  <!-- Dimitri in Cyprus -->
+  <circle cx="620" cy="310" r="18" class="marker-circle" fill="#2D9F4F"/>
+  <text x="620" y="316" class="label" text-anchor="middle" fill="white">D</text>
+
+  <!-- Legend Background -->
+  <rect x="50" y="720" width="1500" height="160" fill="white" stroke="#ccc" stroke-width="1" rx="5"/>
+  
+  <!-- Legend Title -->
+  <text x="70" y="750" class="legend-title">Team Members:</text>
+  <circle cx="80" cy="770" r="8" fill="#FF6B35" stroke="white" stroke-width="2"/>
+  <text x="100" y="775" class="legend-item">Maya - NYC</text>
+  <circle cx="560" cy="770" r="8" fill="#00A896" stroke="white" stroke-width="2"/>
+  <text x="580" y="775" class="legend-item">Amir - London</text>
+  <circle cx="1040" cy="770" r="8" fill="#2D9F4F" stroke="white" stroke-width="2"/>
+  <text x="1060" y="775" class="legend-item">Petra - Prague</text>
+  <circle cx="80" cy="810" r="8" fill="#FF6B35" stroke="white" stroke-width="2"/>
+  <text x="100" y="815" class="legend-item">Erik - Munich</text>
+  <circle cx="560" cy="810" r="8" fill="#00A896" stroke="white" stroke-width="2"/>
+  <text x="580" y="815" class="legend-item">Marco - Florence</text>
+  <circle cx="1040" cy="810" r="8" fill="#2D9F4F" stroke="white" stroke-width="2"/>
+  <text x="1060" y="815" class="legend-item">Dimitri - Cyprus</text>
+</svg>

@@ -9,7 +9,8 @@ function Forums() {
   const [selectedForum, setSelectedForum] = useState(null)
   const [showForm, setShowForm] = useState(false)
   const [newForum, setNewForum] = useState({
-    forum_date: '',
+    forum_start_date: '',
+    forum_end_date: '',
     city: '',
     host_name: '',
     host_location: '',
@@ -36,7 +37,7 @@ function Forums() {
 
   const handleCreateForum = async (e) => {
     e.preventDefault()
-    if (!newForum.forum_date || !newForum.city) return
+    if (!newForum.forum_start_date || !newForum.forum_end_date || !newForum.city) return
 
     try {
       await axios.post('/api/forums', {
@@ -46,7 +47,8 @@ function Forums() {
         deep_dive_3_person_id: parseInt(newForum.deep_dive_3_person_id) || null
       })
       setNewForum({
-        forum_date: '',
+        forum_start_date: '',
+        forum_end_date: '',
         city: '',
         host_name: '',
         host_location: '',
@@ -106,12 +108,22 @@ function Forums() {
         <form onSubmit={handleCreateForum} className="forum-form">
           <fieldset>
             <legend>Create New Forum</legend>
-            <label htmlFor="forum-date">Forum Date</label>
+            <label htmlFor="forum-start-date">Forum Start Date</label>
             <input
-              id="forum-date"
+              id="forum-start-date"
               type="date"
-              value={newForum.forum_date}
-              onChange={(e) => setNewForum({ ...newForum, forum_date: e.target.value })}
+              value={newForum.forum_start_date}
+              onChange={(e) => setNewForum({ ...newForum, forum_start_date: e.target.value })}
+              required
+              aria-required="true"
+            />
+
+            <label htmlFor="forum-end-date">Forum End Date</label>
+            <input
+              id="forum-end-date"
+              type="date"
+              value={newForum.forum_end_date}
+              onChange={(e) => setNewForum({ ...newForum, forum_end_date: e.target.value })}
               required
               aria-required="true"
             />
@@ -236,10 +248,10 @@ function Forums() {
               role="button"
               tabIndex={0}
               onKeyPress={(e) => e.key === 'Enter' && setSelectedForum(forum)}
-              aria-label={`Forum on ${forum.forum_date} in ${forum.city}`}
+              aria-label={`Forum from ${forum.forum_start_date} to ${forum.forum_end_date} in ${forum.city}`}
             >
               <div className="forum-card-header">
-                <h4>{new Date(forum.forum_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</h4>
+                <h4>{new Date(forum.forum_start_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - {new Date(forum.forum_end_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</h4>
                 <span className="city-badge">{forum.city}</span>
               </div>
               {forum.host_name && <p className="host">Hosted by: {forum.host_name}</p>}
@@ -250,7 +262,7 @@ function Forums() {
                   e.stopPropagation()
                   handleDeleteForum(forum.id)
                 }}
-                aria-label={`Delete forum on ${forum.forum_date}`}
+                aria-label={`Delete forum from ${forum.forum_start_date} to ${forum.forum_end_date}`}
               >
                 ×
               </button>
