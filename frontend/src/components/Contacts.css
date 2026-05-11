@@ -87,8 +87,6 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 12px;
-  max-height: 400px;
-  overflow-y: auto;
 }
 
 .empty {
@@ -164,6 +162,10 @@
   color: #c0392b;
 }
 
+.contact-info {
+  flex: 1;
+}
+
 .contact-card p {
   margin: 4px 0;
   color: #666;
@@ -175,8 +177,29 @@
   color: #2D9F4F;
   text-decoration: none;
   font-size: 12px;
+  font-weight: 500;
 }
 
 .contact-card a:hover {
   text-decoration: underline;
+}
+
+.phones {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.phones p {
+  margin: 4px 0;
+  font-size: 12px;
+}
+
+.birthday {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid #e0e0e0;
+  font-size: 12px !important;
+  color: #2D9F4F;
+  font-weight: 500;
 }

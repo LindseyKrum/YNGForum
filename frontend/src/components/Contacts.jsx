@@ -102,11 +102,21 @@ function Contacts() {
       <div className="contacts-grid">
         {ATTENDEES.map(person => (
           <div key={person.id} className="contact-card team-member">
-            <div className="contact-header">
-              <div>
-                <h3>{person.flag} {person.name}</h3>
-                <p className="role">Team Member</p>
-              </div>
+            <div className="contact-info">
+              <h3>{person.flag} {person.name}</h3>
+              <p className="role">Team Member</p>
+              {person.phones && person.phones.length > 0 && (
+                <div className="phones">
+                  {person.phones.map((phone, idx) => (
+                    <p key={idx}>
+                      <a href={`tel:${phone}`}>{phone}</a>
+                    </p>
+                  ))}
+                </div>
+              )}
+              {person.birthday && (
+                <p className="birthday">🎂 {person.birthday}</p>
+              )}
             </div>
           </div>
         ))}
