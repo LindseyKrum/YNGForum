@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { ATTENDEES, getAttendeeNameById } from '../utils/attendees'
+import { formatDate } from '../utils/dateFormat'
 import './ParkingLot.css'
 
 function ParkingLot() {
@@ -108,7 +109,7 @@ function ParkingLot() {
               {item.assigned_to_id && (
                 <p className="assigned">Assigned to: {getAttendeeNameById(item.assigned_to_id)}</p>
               )}
-              <p className="added-date">Added: {new Date(item.added_at).toLocaleDateString()}</p>
+              <p className="added-date">Added: {formatDate(item.added_at)}</p>
               <div className="item-actions">
                 <button className="resolve-btn" onClick={() => handleResolve(item.id)}>
                   Mark Resolved

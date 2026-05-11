@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { ATTENDEES } from '../utils/attendees'
+import { formatDateRange } from '../utils/dateFormat'
 import ForumView from './ForumView'
 import './Forums.css'
 
@@ -251,7 +252,7 @@ function Forums() {
               aria-label={`Forum from ${forum.forum_start_date} to ${forum.forum_end_date} in ${forum.city}`}
             >
               <div className="forum-card-header">
-                <h4>{new Date(forum.forum_start_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - {new Date(forum.forum_end_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</h4>
+                <h4>{formatDateRange(forum.forum_start_date, forum.forum_end_date)}</h4>
                 <span className="city-badge">{forum.city}</span>
               </div>
               {forum.host_name && <p className="host">Hosted by: {forum.host_name}</p>}

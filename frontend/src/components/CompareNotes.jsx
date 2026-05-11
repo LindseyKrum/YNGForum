@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { ATTENDEES } from '../utils/attendees'
 import { getKeywordFrequency } from '../utils/keywordFlagging'
+import { formatDate } from '../utils/dateFormat'
 import './CompareNotes.css'
 
 function CompareNotes() {
@@ -81,11 +82,7 @@ function CompareNotes() {
               <div key={idx} className="forum-entry">
                 <div className="entry-header">
                   <h5>
-                    📅 {new Date(noteRecord.forum.forum_date).toLocaleDateString('en-US', {
-                      month: 'short',
-                      day: 'numeric',
-                      year: 'numeric'
-                    })}
+                    📅 {formatDate(noteRecord.forum.forum_date)}
                   </h5>
                   <span className="location">{noteRecord.forum.city}</span>
                 </div>

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { ATTENDEES, getAttendeeNameById } from '../utils/attendees'
 import { getKeywordFrequency } from '../utils/keywordFlagging'
+import { formatDateRange } from '../utils/dateFormat'
 import './ForumView.css'
 
 function ForumView({ forum, onBack, onDelete }) {
@@ -74,7 +75,7 @@ function ForumView({ forum, onBack, onDelete }) {
 
       <div className="forum-header">
         <div>
-          <h2>📅 Forum — {new Date(forum.forum_start_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} to {new Date(forum.forum_end_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</h2>
+          <h2>📅 Forum — {formatDateRange(forum.forum_start_date, forum.forum_end_date)}</h2>
           <p className="forum-meta">{forum.city} • Hosted by {forum.host_name || 'TBD'} • {forum.host_location || ''}</p>
         </div>
         <button className="delete-btn" onClick={onDelete} aria-label="Delete forum">Delete</button>

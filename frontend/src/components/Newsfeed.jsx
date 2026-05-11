@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { ATTENDEES, getAttendeeNameById } from '../utils/attendees'
+import { formatDateTime } from '../utils/dateFormat'
 import './Newsfeed.css'
 
 function Newsfeed() {
@@ -124,7 +125,7 @@ function Newsfeed() {
                 <div className="post-info">
                   <strong>{getAttendeeNameById(post.submitter_id) || 'Unknown'}</strong>
                   <span className="timestamp">
-                    {new Date(post.created_at).toLocaleString()}
+                    {formatDateTime(post.created_at)}
                   </span>
                 </div>
                 <button
