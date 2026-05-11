@@ -10,7 +10,7 @@ export const ATTENDEES = [
   {
     id: 2,
     name: 'Erik Svensson',
-    flag: '🇨🇿',
+    flag: '🇨🇿🇸🇪',
     phones: ['+420 775 400 000'],
     birthday: 'April 25'
   },
