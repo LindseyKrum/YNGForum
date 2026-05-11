@@ -141,6 +141,13 @@
   font-size: 13px;
 }
 
+.forum-ref {
+  color: #00A896;
+  margin: 8px 0;
+  font-size: 12px;
+  font-weight: 500;
+}
+
 .added-date {
   color: #999;
   margin: 8px 0;

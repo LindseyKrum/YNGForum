@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { ATTENDEES, getAttendeeNameById } from '../utils/attendees'
-import { formatDate } from '../utils/dateFormat'
+import { formatDateRange } from '../utils/dateFormat'
 import './ParkingLot.css'
 
 function ParkingLot() {
   const [items, setItems] = useState([])
-  const [newItem, setNewItem] = useState({ topic_name: '', priority: 'medium', assigned_to_id: '' })
+  const [forums, setForums] = useState([])
+  const [newItem, setNewItem] = useState({ topic_name: '', priority: 'medium', assigned_to_id: '', forum_id: '' })
 
   useEffect(() => {
     fetchItems()
+    fetchForums()
   }, [])
 
   const fetchItems = async () => {
@@ -18,6 +20,15 @@ function ParkingLot() {
       setItems(response.data)
     } catch (error) {
       console.error('Error fetching parking lot:', error)
+    }
+  }
+
+  const fetchForums = async () => {
+    try {
+      const response = await axios.get('/api/forums')
+      setForums(response.data)
+    } catch (error) {
+      console.error('Error fetching forums:', error)
     }
   }
 
@@ -88,6 +99,17 @@ function ParkingLot() {
             <option key={person.id} value={person.id}>{person.flag} {person.name}</option>
           ))}
         </select>
+        <select
+          value={newItem.forum_id || ''}
+          onChange={(e) => setNewItem({ ...newItem, forum_id: e.target.value || null })}
+        >
+          <option value="">From forum...</option>
+          {forums.map(forum => (
+            <option key={forum.id} value={forum.id}>
+              {new Date(forum.forum_start_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })} - {forum.city}
+            </option>
+          ))}
+        </select>
         <button type="submit">Add Item</button>
       </form>
 
@@ -108,6 +130,9 @@ function ParkingLot() {
               </div>
               {item.assigned_to_id && (
                 <p className="assigned">Assigned to: {getAttendeeNameById(item.assigned_to_id)}</p>
+              )}
+              {item.forum && (
+                <p className="forum-ref">📅 From: {formatDateRange(item.forum.forum_start_date, item.forum.forum_end_date)} in {item.forum.city}</p>
               )}
               <p className="added-date">Added: {formatDate(item.added_at)}</p>
               <div className="item-actions">

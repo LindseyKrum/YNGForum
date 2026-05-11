@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
       .from('parking_lot')
       .select(`
         *,
-        assigned_user:users(name)
+        forum:forums(id, forum_start_date, forum_end_date, city)
       `)
       .is('resolved_at', null)
       .order('priority', { ascending: true })
@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
 // Create parking lot item
 router.post('/', async (req, res) => {
   try {
-    const { topic_name, priority, assigned_to_id } = req.body
+    const { topic_name, priority, assigned_to_id, forum_id } = req.body
 
     const { data, error } = await supabase
       .from('parking_lot')
@@ -34,9 +34,10 @@ router.post('/', async (req, res) => {
         topic_name,
         priority: priority || 'medium',
         assigned_to_id,
+        forum_id,
         added_at: new Date().toISOString()
       }])
-      .select('*, assigned_user:users(name)')
+      .select('*, forum:forums(id, forum_start_date, forum_end_date, city)')
 
     if (error) throw error
     res.json(data[0])
@@ -49,17 +50,18 @@ router.post('/', async (req, res) => {
 // Update parking lot item
 router.put('/:id', async (req, res) => {
   try {
-    const { topic_name, priority, assigned_to_id } = req.body
+    const { topic_name, priority, assigned_to_id, forum_id } = req.body
 
     const { data, error } = await supabase
       .from('parking_lot')
       .update({
         topic_name,
         priority,
-        assigned_to_id
+        assigned_to_id,
+        forum_id
       })
       .eq('id', req.params.id)
-      .select('*, assigned_user:users(name)')
+      .select('*, forum:forums(id, forum_start_date, forum_end_date, city)')
 
     if (error) throw error
     res.json(data[0])
